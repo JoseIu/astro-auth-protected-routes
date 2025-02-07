@@ -1,0 +1,25 @@
+---
+import './loginFrom.css';
+---
+
+<div class="login">
+  <h2 class="login__title">Sign in to your account</h2>
+  <form class="form">
+    <div class="form__group">
+      <label class="form__label" for="email">Email</label>
+      <input class="form__input" type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form__group">
+      <label class="form__label" for="password">Password</label>
+      <input class="form__input" type="password" id="password" name="password" required />
+    </div>
+
+    <div class="form__group form__group--check">
+      <input class="form__check" type="checkbox" id="stay-signed" name="stay-signed" />
+      <label class="form__label" for="stay-signed">Stay signed</label>
+    </div>
+
+    <button class="form__submit" type="submit">Continue</button>
+  </form>
+</div>
