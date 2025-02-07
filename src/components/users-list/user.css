@@ -1,0 +1,12 @@
+.users {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 1rem;
+}
