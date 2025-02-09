@@ -1,33 +1,38 @@
 {
-	"name": "astro-auth-actions",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"users": "tsx src/seed/usersSeed.ts"
-	},
-	"dependencies": {
-		"@astrojs/node": "^9.0.2",
-		"@astrojs/react": "^4.2.0",
-		"@prisma/client": "6.3.1",
-		"@types/react": "^19.0.8",
-		"@types/react-dom": "^19.0.3",
-		"astro": "^5.2.5",
-		"lodash.debounce": "^4.0.8",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
-	},
-	"devDependencies": {
-		"@faker-js/faker": "^9.4.0",
-		"@types/lodash.debounce": "^4.0.9",
-		"@types/node": "^22.13.1",
-		"prettier": "^3.4.2",
-		"prettier-plugin-astro": "^0.14.1",
-		"prisma": "6.3.1",
-		"ts-node": "^10.9.2",
-		"tsx": "^4.19.2"
-	}
+  "name": "astro-auth-actions",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "users": "tsx src/seed/usersSeed.ts",
+    "uAuth": "tsx src/seed/userAuth.ts"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.0.2",
+    "@astrojs/react": "^4.2.0",
+    "@auth/core": "^0.37.4",
+    "@prisma/client": "6.3.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "astro": "^5.2.5",
+    "auth-astro": "^4.2.0",
+    "bcryptjs": "^2.4.3",
+    "lodash.debounce": "^4.0.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/node": "^22.13.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prisma": "6.3.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2"
+  }
 }
