@@ -1,8 +1,27 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+const { user } = Astro.locals;
+console.log({ Profile: user });
 ---
 
 <Layout title="Profile">
   <h1>Profile</h1>
   <p>Welcome to your profile page</p>
+
+  <button class="logout">LOGOUT</button>
+
+  <pre>
+    <code>{JSON.stringify(user, null, 2)}</code>
+  </pre>
 </Layout>
+
+<script>
+  const logoutButton = document.querySelector('.logout') as HTMLButtonElement;
+  const { signOut } = await import('auth-astro/client');
+
+  logoutButton.addEventListener('click', async () => {
+    await signOut();
+    // location.href = '/';
+    window.location.href = '/auth/login';
+  });
+</script>
