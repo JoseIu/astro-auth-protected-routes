@@ -1,15 +1,35 @@
 import type { MiddlewareNext } from 'astro';
 import { defineMiddleware } from 'astro:middleware';
+import { getSession } from 'auth-astro/server';
 
 const privateRoutes = ['/profile'];
+const notAuthenticatedRoutes = ['/auth/login', '/auth/register'];
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const { url, request } = context;
+  const { url, request, locals, redirect } = context;
 
-  const authHeaders = request.headers.get('authorization') ?? '';
+  const session = await getSession(request);
+  const isLoggedIn = !!session;
+  const user = session?.user;
 
-  if (privateRoutes.includes(url.pathname)) {
-    return checkLoaclAuth(authHeaders, next);
+  locals.isLoggedIn = isLoggedIn;
+
+  if (user) {
+    // locals.user = {
+    //   name: user.name!,
+    //   email: user.email!
+    // };
+    locals.user = user as User;
+
+    locals.isAdmin = user.role === 'ADMIN';
+  }
+
+  if (!isLoggedIn && privateRoutes.includes(url.pathname)) {
+    return redirect('/auth/login');
+  }
+
+  if (isLoggedIn && notAuthenticatedRoutes.includes(url.pathname)) {
+    return redirect('/');
   }
 
   return next();
