@@ -1,18 +1,28 @@
 ---
 import './loginFrom.css';
+
+const userEmail = 'admin@admin.com';
+const userPassword = '123456';
 ---
 
 <div class="login">
   <h2 class="login__title">Sign in to your account</h2>
-  <form class="form">
+  <form class="form" id="login-form">
     <div class="form__group">
       <label class="form__label" for="email">Email</label>
-      <input class="form__input" type="email" id="email" name="email" required />
+      <input value={userEmail} class="form__input" type="email" id="email" name="email" required />
     </div>
 
     <div class="form__group">
       <label class="form__label" for="password">Password</label>
-      <input class="form__input" type="password" id="password" name="password" required />
+      <input
+        value={userPassword}
+        class="form__input"
+        type="password"
+        id="password"
+        name="password"
+        required
+      />
     </div>
 
     <div class="form__group form__group--check">
@@ -25,3 +35,30 @@ import './loginFrom.css';
 
   <a href="/auth/register">Register</a>
 </div>
+
+<script>
+  const form = document.querySelector('#login-form') as HTMLFormElement;
+  const btnSubmit = form.querySelector('.form__submit') as HTMLButtonElement;
+  const { signIn, signOut } = await import('auth-astro/client');
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    btnSubmit.setAttribute('disabled', 'disabled');
+
+    const formData = new FormData(form);
+
+    const resp = await signIn('credentials', {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+      redirect: false
+    });
+
+    if (resp) {
+      console.log('Error signing in');
+      const error = await resp.json();
+      console.log({ error });
+      return;
+    }
+    window.location.replace('/profile');
+  });
+</script>
